@@ -50,13 +50,13 @@ function append_product(el){
     let quant_div = document.createElement('div');
     quant_div.setAttribute('id', 'quant-div')
 
-    //quantity increase decrease button starts
+    // <----- quantity increase decrease button starts --->
 
 
     let button_low = document.createElement('button');
     button_low.textContent = '-';
-    button_low.addEventListener('click', function(){
-        decrease();
+    button_low.addEventListener('click', function(event){
+        decrease(event);
     })
 
     let quant_box = document.createElement('input');
@@ -66,11 +66,11 @@ function append_product(el){
 
     let button_high = document.createElement('button');
     button_high.textContent = '+';
-    button_high.addEventListener('click', function(){
-        increase();
+    button_high.addEventListener('click', function(event){
+        increase(event);
     });
 
-    // quantity increase decrease button ends
+    // <---- quantity increase decrease button ends ----->
 
     quant_div.append(button_low,quant_box, button_high);
     product_div.append(quant_div);
@@ -112,6 +112,7 @@ function get_cart_total_amount(){
     cash_back_text.innerHTML = `You will earn  <b>₹ 102 MyGlammXO Points </b> as cashback on this order.`
    
     let grand_total_price = document.createElement('p');
+    grand_total_price.setAttribute('id', 'grand_total_price');
     grand_total_price.innerHTML = `GRAND TOTAL  <b> ₹ ${grand_total} </b>`;
 
     localStorage.setItem("grand_total", JSON.stringify(grand_total));
@@ -170,19 +171,94 @@ function get_cart_product(){
 }
 get_cart_product();
 
-function decrease(){
-    let count = document.getElementById('input').value;
-    if(count>1){
-        count--;
-        document.getElementById('input').value = count;
-    }
+
+
+
+// <----- decrease quantity -->
+function decrease(e){
+    
+    let parent_element  = e.target.parentElement.parentElement;
+    let price_div = parent_element.children[2];
+    let el = e.target.nextElementSibling;
+
+    const prod_name = parent_element.children[1].textContent;
+    let price;
+    let prod = JSON.parse(localStorage.getItem('cart'));
+
+    prod.forEach(element => {
+        if(element.Name == prod_name){
+            price = element.Price; 
+        }
+   });
+
+
+   // let count = document.getElementById('input').value;
+   if(el.value > 1){
+
+    const amount_string = price_div.children[0].textContent;
+
+        
+    const [,amount_number] = amount_string.trim().split(" ").map(Number);
+
+    console.log(amount_number)
+    price_div.children[0].textContent = `₹ ${ amount_number - price}`;
+
+    
+        //decreasing total price as well
+        const total_price = document.getElementById('grand_total_price').textContent;
+        console.log(total_price)
+        let [,,,,,grand_total_price] = total_price.trim().split(" ").map(Number);
+        document.getElementById('grand_total_price').innerHTML = `GRAND TOTAL  <b> ₹ ${grand_total_price - price} </b>`;
+
+        //decreasing quantity
+
+       el.value = el.value-1
+   }
+ 
+
+
+
+
+
 }
 
 
-function increase(){
-    let count = document.getElementById('input').value;
-    if(count<10){
-        count++;
-        document.getElementById('input').value = count;
-    }
+
+ //------ increase quantity---
+function increase(e){
+   
+   let parent_element  = e.target.parentElement.parentElement;
+   let price_div = parent_element.children[2];
+  
+    // console.log(typeof(price_div.children[0].innerText));
+    let el = e.target.previousElementSibling;
+   
+    const prod_name = parent_element.children[1].textContent;
+    let price ;
+   let prod = JSON.parse(localStorage.getItem('cart'));
+   prod.forEach(element => {
+        if(element.Name == prod_name){
+            price = element.Price; 
+        }
+   });
+  
+   if(el.value  <10 ){
+      
+     const amount_string = price_div.children[0].textContent;
+     const [,amount_number] = amount_string.trim().split(" ").map(Number);
+     
+
+    price_div.children[0].textContent = `₹ ${price + amount_number}`;
+
+
+        //increasing total price as well
+        const total_price = document.getElementById('grand_total_price').textContent;
+        console.log(total_price)
+        let [,,,,,grand_total_price] = total_price.trim().split(" ").map(Number);
+        document.getElementById('grand_total_price').innerHTML = `GRAND TOTAL  <b> ₹ ${grand_total_price+price} </b>`;
+
+       el.value = Number(el.value) +1;
+   }
+    
 }
+
