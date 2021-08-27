@@ -209,10 +209,22 @@ function decrease(e){
         console.log(total_price)
         let [,,,,,grand_total_price] = total_price.trim().split(" ").map(Number);
         document.getElementById('grand_total_price').innerHTML = `GRAND TOTAL  <b> ₹ ${grand_total_price - price} </b>`;
-
+        
         //decreasing quantity
 
        el.value = el.value-1
+
+    //<------- storing grand_total to local storage
+
+       const total = document.getElementById('grand_total_price').children[0].textContent;
+       const [,t_price] = total.trim().split(" ").map(Number);
+       localStorage.setItem('grand_total', JSON.stringify(t_price));
+
+
+
+
+
+
    }
  
 
@@ -253,12 +265,23 @@ function increase(e){
 
         //increasing total price as well
         const total_price = document.getElementById('grand_total_price').textContent;
-        console.log(total_price)
+    
         let [,,,,,grand_total_price] = total_price.trim().split(" ").map(Number);
         document.getElementById('grand_total_price').innerHTML = `GRAND TOTAL  <b> ₹ ${grand_total_price+price} </b>`;
 
        el.value = Number(el.value) +1;
+
+
+        //<-- storing grand total to localstorage-->
+       const total = document.getElementById('grand_total_price').children[0].textContent;
+       const [,t_price] = total.trim().split(" ").map(Number);
+       localStorage.setItem('grand_total', JSON.stringify(t_price));
+    
+
+
    }
     
 }
+
+
 
