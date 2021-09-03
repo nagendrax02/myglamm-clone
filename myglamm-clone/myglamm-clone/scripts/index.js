@@ -15,7 +15,7 @@ function create_model(){
     
     <div class="container">
         <div class="sign-up-box">
-        <span id="close" class="close">&times;</span>
+        <span id="close" class="close" onclick="close_login_box()">&times;</span>
 
         <h5 class="top-text"><span>Get 15% MyGlammXO Points back on every order
         </span></h5>
@@ -48,7 +48,7 @@ function create_model(){
         </div>
 
         <div class="button-div">
-            <button class="button" onclick="generator()">CONTINUE</button>
+            <button class="button" onclick="log_in()">CONTINUE</button>
         </div>
         <div class="hr-line">
             <p><span>or continue with</span></p>
@@ -90,13 +90,15 @@ function close_login_box(){
      // close login page
      let modal_div = document.getElementById('myModal');
      let span = document.getElementById('close')
-     console.log(span)
+    //  console.log(span)
      span.addEventListener('click', function(){
         modal_div.style.display = 'none';
-        location.href = 'index.html';
+      //  location.href = 'index.html';
      });
    
 }
+
+
 
 
 //user detail modal
@@ -138,7 +140,7 @@ function generator(){
 
 
 
-function create_user_detail_modal(){
+function create_user_detail_modal(mobile){
     let modal_div = document.getElementById('myModal')
     let modal_content_div = document.querySelector('.model-content')
 
@@ -146,7 +148,7 @@ function create_user_detail_modal(){
 
     modal_content_div.innerHTML = `
     
-    <div class="container">
+    <div class="container" id='register-box'>
         <div class="sign-up-box">
         <span id="close" class="close">&times;</span>
             <h5 class="top-text"><span>Verify your mobile number to complete your registration
@@ -167,13 +169,15 @@ function create_user_detail_modal(){
                 </form>
                 
                 <div class='phone-number'>
-                    <fieldset><legend class="leg-text">*Email:</legend><input type="text" id="email" class="input-number" placeholder="*Email Address"></fieldset>
+                    <fieldset><legend class="leg-text">*Email:</legend><input type="text" id="user-email" class="input-number" placeholder="*Email Address"></fieldset>
                     
                 </div>
             </div>
 
             <div class="button-div">
-                <button class="button" onclick="register_user()">SIGN UP</button>
+
+                <button class="button" id = 'register-btn'>sign up</button>
+
             </div>
            
             <p>By signing up you agree to our <a href="" style="text-decoration: none; color: black;"><b> Terms & Conditions</b> </a> </p>
@@ -183,6 +187,10 @@ function create_user_detail_modal(){
 
     `;
 
+    let btn = document.getElementById('register-btn')
+    btn.addEventListener('click', function(){
+        register_user(mobile);
+    })
     
     modal_div.append(modal_content_div);
     container.append(modal_div)
@@ -195,3 +203,5 @@ function create_user_detail_modal(){
     container.append(modal_div);
     close_login_box();
 }
+
+
