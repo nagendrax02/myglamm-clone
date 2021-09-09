@@ -119,7 +119,7 @@ form{
 
     .end-section{
         display: flex;
-        justify-content: right;
+        justify-content: left;
         margin-left: 70px;
     }
 
