@@ -7,9 +7,6 @@
     background-color: rgb(254,232,232);
     text-align: center;
 }
-.top-section div{
-    width: 20.5%;
-}
 
 .top-section  li:first-child{
     float: left;
