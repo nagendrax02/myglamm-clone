@@ -2,9 +2,13 @@
 
 .top-section{
     display: flex;
+    justify-content: center;
     overflow: hidden;
     background-color: rgb(254,232,232);
     text-align: center;
+}
+.top-section div{
+    width: 20.5%;
 }
 
 .top-section  li:first-child{
@@ -531,15 +535,15 @@ form{
         /* footer part css start */
 
         .foot1{
-            height: 100px;
             display: flex;
             justify-content: center;
             margin-top: 20px;
+            width: 100%;
+            gap: 100px;
         }
         .foot2{
             position: relative;
             width: 30%;
-            margin-left: 5%;
             font-size: 15px;
             font-family: Arial, Helvetica, sans-serif;
         }
@@ -558,6 +562,9 @@ form{
             padding: 2%;
         }
         .foot3{
+            display: flex;
+            justify-content: center;
+            gap: 500px;
             position: relative;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 13px;
@@ -566,12 +573,12 @@ form{
         .one3{
             position:absolute;
             top: 60%;
-            left: 10%;
+            left: 5%;
         }
         .two3{
             position:absolute;
             top: 60%;
-            left: 43%;
+            left: 40%;
             margin-left: 5px;
         }
         .foot3>a>img{
@@ -596,7 +603,7 @@ form{
             left: 81%;
         }
         .foot4{
-            width: 28%;
+            width: 25%;
 
         }
         .box4{
