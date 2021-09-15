@@ -4,7 +4,7 @@
   
 # Myglamm clone
 
-Here in this project we have cloned an online e-commerce website called 'Myglamm'.  It's an online web store, selling make up products online.
+Here in this project we have cloned an online e-commerce website, 'Myglamm'.  It's an online web store, selling the makeup and beauty products online.
 Here we have added some Important and basic functionalities and feature's to this project.
 You can find products by their category.
 You can add product to the cart.
